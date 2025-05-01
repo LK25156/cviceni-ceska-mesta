@@ -1,6 +1,9 @@
 import { render } from '@czechitas/render';
+import {City} from "../components/City/City";
+import {cities} from "./data";
 import '../global.css';
 import './index.css';
+import "../components/City/City.css";
 
 //1. Do souboru index.jsx vložte mimo komponentu pole s názvy deseti největších českých měst.
 const cities = [
@@ -21,7 +24,7 @@ const cities = [
 Výsledné pole uložte do proměnné cityElements.*/
 
 //2.
-const cityElements = cities.map((city) => <div className="city">Název města</div>);
+//const cityElements = cities.map((city) => <div className="city">Název města</div>);
 
 
 //3. Použijte pole cityElements uvnitř komponenty JSX a zobrazte jej tak na vaší stránce.
@@ -42,6 +45,9 @@ const cityElements = cities.map((city) => <div className="city">Název města</d
 document.querySelector("#root").innerHTML = render (
   <div className="container">
     {cities.map((city)=> <div key={city} className="city">{city}</div>)}
+    {cities.map(({name, population,area})=> (
+    <City name={name} population={population} area={area}/>
+    ))}
   </div>
 );
 
@@ -53,3 +59,9 @@ document.querySelector("#root").innerHTML = render (
 pro každý element vytvoří nový <div>element s třídou "city" a zobrazí v něm název města
 key={city} - každé město dostává unikátní klíč(key)*/
 
+cities.map (({name, population, area})=>{
+  const {name,population,area} = City
+  return (
+<City name={name} population={population} area={area}/>
+  )
+});

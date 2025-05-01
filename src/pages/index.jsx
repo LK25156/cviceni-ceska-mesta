@@ -39,15 +39,17 @@ const cityElements = cities.map((city) => <div className="city">Název města</d
 //(proměnná cityElements je odstraněna a metoda map je volána přímo v návratové části komponenty)
 //5. key={city} - názvy měst, prtž jsou jedinečné
 
-const App = () => (
-  <div>
-    <h1>Česká města</h1>
-    {cities.map(city => (
-      <div className="city" key={city}>{city}</div>
-    ))}
+document.querySelector("#root").innerHTML = render (
+  <div className="container">
+    {cities.map((city)=> <div key={city} className="city">{city}</div>)}
   </div>
 );
 
 
-//? document.querySelector('#root').innerHTML = render();
+/*document.querySelector("#root") -jsx hledá HTML element s id="root", kt je definován v index.html
+.innerHTML = render (..) přepisuje obsah #root pomocí funkce render
+<div className="container"> - vytvoří kontejner pro všechna města
+{cities.map((city) - prochází seznam měst cities, což je pole obsahující názvy různých měst
+pro každý element vytvoří nový <div>element s třídou "city" a zobrazí v něm název města
+key={city} - každé město dostává unikátní klíč(key)*/
 
